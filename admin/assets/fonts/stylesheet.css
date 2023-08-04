@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Koulen';
+    src: url('Koulen.eot');
+    src: url('Koulen.eot?#iefix') format('embedded-opentype'),
+        url('Koulen.woff2') format('woff2'),
+        url('Koulen.woff') format('woff'),
+        url('Koulen.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* body{
+    font-family: system-ui, -apple-system,"Koulen", "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size:10px;
+} */

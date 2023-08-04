@@ -8,11 +8,11 @@ if (isset($_GET['page'])) {
 		case "docs":
 			$page = "docs.php";
 			break;
-		case "orders":
-			$page = "orders.php";
+		case "property":
+			$page = "property.php";
 			break;
-		case "service":
-			$page = "service.php";
+		case "property_type":
+			$page = "property_type.php";
 			break;
 		default:
 		$page = "overview.php";
