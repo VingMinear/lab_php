@@ -1,9 +1,10 @@
 <?php
 $page = "overview.php";
-
-if (isset($_GET['page'])) {
+$tab=1;
+if (isset($_GET['page'])&&isset($_GET['tab'])) {
 	$slider = false;
 	$routePage = $_GET['page'];
+	$tab=$_GET['tab'];
 	switch ($routePage) {
 		case "docs":
 			$page = "docs.php";
@@ -14,13 +15,32 @@ if (isset($_GET['page'])) {
 		case "property_type":
 			$page = "property_type.php";
 			break;
+		case "charts":
+			$page = "charts.php";
+			break;
+		case "help":
+			$page = "help.php";
+			break;
+		case "setting":
+			$page = "setting.php";
+			break;
+		case "404":
+			$page = "404.php";
+			break;
 		default:
-		$page = "overview.php";
+			$page = "overview.php";
 			break;
 	}
 }
 ?>
-<?php include "../config/db.php" ?>
+<?php
+include "../config/db.php";
+include "./controllers/query.php";
+include "./controllers/property_type_controller.php";
+include "./models/modal_model.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +48,12 @@ if (isset($_GET['page'])) {
 
 <body class="app">
 	<!--------------- NavBar -------------->
-	<?php include "includes/nav_bar.php" ?>
+	<?php
+	if ($page == "404.php" || $page == "login.php" || $page == "signup.php") {
+	} else {
+		include "includes/nav_bar.php";
+	}
+	?>
 	<!-----------------end---------------->
 	<!--------------- Body -------------->
 	<?php include "pages/$page" ?>

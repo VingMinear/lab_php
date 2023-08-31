@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="view_property" role="tabpanel" aria-labelledby="tab1">
+<div class="tab-pane fade  <?php if ($tab == 1) echo "show active"; ?> " id="view_property" role="tabpanel" aria-labelledby="tab1">
 	<div class="app-card app-card-orders-table shadow-sm mb-5">
 		<div class="app-card-body">
 			<div class="table-responsive">

@@ -2,12 +2,14 @@
 $imgDetail = '';
 
 ?>
+
 <div class="app-wrapper" method="POST">
 	<div class="app-content pt-3 p-md-3 p-lg-4">
 		<div class="container-xl">
 			<div class="row g-3 mb-4 align-items-center justify-content-between">
 				<div class="col-auto">
 					<h1 class="app-page-title mb-0">ប្រភេទនៃអចលនទ្រព្យ</h1>
+
 				</div>
 				<div class="col-auto">
 					<div class="page-utilities">
@@ -46,29 +48,37 @@ $imgDetail = '';
 					</div><!--//table-utilities-->
 				</div><!--//col-auto-->
 			</div><!--//row-->
-
-
 			<nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-				<a class="flex-sm-fill text-sm-center nav-link active" id="tab1" data-bs-toggle="tab" href="#view_property" role="tab" aria-controls="view_property" aria-selected="false">បញ្ចីប្រភេទនៃអចលនទ្រព្យ</a>
-				<a class="flex-sm-fill text-sm-center nav-link" id="tab2" data-bs-toggle="tab" href="#add_property" role="tab" aria-controls="add_property" aria-selected="false">បញ្ចូលប្រភេទនៃអចលនទ្រព្យ</a>
+				<a class="flex-sm-fill text-sm-center nav-link <?php if ($tab == 1) echo "active"; ?>" onclick="reload(1)" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">បញ្ចីប្រភេទនៃអចលនទ្រព្យ</a>
+				<a class="flex-sm-fill text-sm-center nav-link <?php if ($tab == 2) echo "active"; ?>" onclick="reload(2)" id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">បង្កើតប្រភេទនៃអចលនទ្រព្យ</a>
 			</nav>
 			<div class="tab-content" id="orders-table-tab-content">
+				<div class="spinner-border visually-hidden" id="loading"role="status">
+
+				</div>
 				<!-- table 1-->
-				<?php include "components/view_property_type.php" ?>
+				<?php
+				include "components/view_property_type.php";
+				?>
 				<!-- end -->
 				<!-- table 2-->
 				<?php include "components/add_property_type.php" ?>
 				<!-- end -->
 			</div>
 
-			
+
 		</div><!--//container-fluid-->
 	</div><!--//app-content-->
 	<?php include "includes/footer.php" ?>
 
 </div><!--//app-wrapper-->
 
-<script>
+<script type="text/javascript">
+	function reload(tab) {
+		window.location.href = "index.php?page=property_type&tab=" + tab;
+		  
+		// _("view_property_type")
+	}
 
 	function _(obj) {
 		return document.getElementById(obj);
