@@ -1,4 +1,4 @@
-<div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
+<div class="tab-pane fade <?php if ($tab == 2) echo "show active"; ?>" id="addPropertyType" role="tabpanel" aria-labelledby="orders-paid-tab">
 <?php
 
 if (isset($_POST['btnSubmit'])) {

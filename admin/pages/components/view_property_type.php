@@ -1,6 +1,4 @@
-
-
-<div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+<div class="tab-pane fade <?php if ($tab == 1) echo "show active"; ?>" id="viewPropertyType" role="tabpanel" aria-labelledby="orders-all-tab">
 	<div class="app-card app-card-orders-table shadow-sm mb-5">
 		<div class="app-card-body">
 			<div class="table-responsive">
@@ -8,15 +6,16 @@
 					<table class="table app-table-hover mb-0 text-left">
 						<thead>
 							<tr>
-								<th class="cell">No.</th>
-								<th class="cell">ប្រភេទអចលនទ្រព្យ ខ្មែរ</th>
-								<th class="cell">ប្រភេទអចលនទ្រព្យ អង់គ្លេស</th>
-								<th class="cell">ការពិពណ៌នា</th>
-								<th class="cell">សកម្មភាព</th>
+								<th class="cell text-center">No.</th>
+								<th class="cell text-center">ប្រភេទអចលនទ្រព្យ ខ្មែរ</th>
+								<th class="cell text-center">ប្រភេទអចលនទ្រព្យ អង់គ្លេស</th>
+								<th class="cell text-center">ការពិពណ៌នា</th>
+								<th class="cell text-center">សកម្មភាព</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
+							
 							$sql = "SELECT * FROM tbl_property_type order by property_type_id desc";
 							$result = queryData($sql);
 							$i = 1;
@@ -26,23 +25,25 @@
 								$propertyNameKH = $row[1];
 								$propertyNameEN = $row[2];
 								$desc = $row['property_type_desc'];
+								$model = new PropertyTypeModel($propertyId, $propertyNameKH, $propertyNameEN, $desc);
 							?>
 								<input type="hidden" name="txtPropertyId" value="<?=$propertyId?>">
 								<tr>
-									<td class="cell"><span class="truncate"><?= $num ?></span></td>
-									<td class="cell"><span class="truncate"><?= $propertyNameKH ?></span></td>
-									<td class="cell"><span class="truncate"><?= $propertyNameEN ?></span></td>
-									<td class="cell"><span class="truncate"><?= $desc ?></span></td>
-									<td class="cell">
-										<a href="#" class=" truncate " title="View" data-toggle="modal"><i class="bi bi-eye-fill text-info me-1"></i></a>
-										<a href="#" class=" truncate" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $num ?>"><i class="bi bi-pencil-square me-1"></i></a>
-										<button type="submit" name="btnDeleted"  class="btn truncate" ><i  class="bi bi-trash text-danger"></i></button>
+									<td class="cell text-center"><span class="truncate"><?= $num ?></span></td>
+									<td class="cell text-center"><span class="truncate"><?= $propertyNameKH ?></span></td>
+									<td class="cell text-center"><span class="truncate"><?= $propertyNameEN ?></span></td>
+									<td class="cell text-center"><span class="truncate"><?= $desc ?></span></td>
+									<td class="cell text-center">
+										<a href="#" class="btn btn-outline-primary btn-rounded waves-effect p-1 px-3"  data-bs-toggle="modal" data-bs-target="#view_detail<?= $num ?>"><i class="fa-solid fa-eye"></i></a>
+										<a href="#" class="btn btn-outline-success btn-rounded waves-effect p-1 px-3" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $num ?>"><i class="fa-regular fa-pen-to-square"></i></a>
+										<button  type="submit" name="btnDelete"  onclick="return confirm('តើអ្នកប្រាកដទេថាអ្នកចង់លុបប្រភេទអចលនទ្រព្យនេះ?');" class="btn btn-outline-danger btn-rounded waves-effect p-1 px-3"><i class="fa-solid fa-trash"></i></button>
 									</td>
+									<?= modalViewDetail($num,$model);?>
 								</tr>
 							<?php
-								$model = new ModelModal($propertyId, $propertyNameKH, $propertyNameEN, $desc);
-
+								
 								modalUpdate($num, $model);
+								
 								$i++;
 							}
 							?>
@@ -50,6 +51,9 @@
 					</table>
 				</form>
 
+
+
+</div>
 			</div><!--//table-responsive-->
 
 		</div><!--//app-card-body-->

@@ -1,6 +1,6 @@
 <?php
 
-class ModelModal {
+class PropertyTypeModel {
     private $id;
     private $en;
     private $kh;

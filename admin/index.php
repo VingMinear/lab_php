@@ -37,7 +37,7 @@ if (isset($_GET['page'])&&isset($_GET['tab'])) {
 include "../config/db.php";
 include "./controllers/query.php";
 include "./controllers/property_type_controller.php";
-include "./models/modal_model.php";
+
 
 ?>
 

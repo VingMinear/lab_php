@@ -52,10 +52,32 @@ $imgDetail = '';
 				<a class="flex-sm-fill text-sm-center nav-link <?php if ($tab == 1) echo "active"; ?>" onclick="reload(1)" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">បញ្ចីប្រភេទនៃអចលនទ្រព្យ</a>
 				<a class="flex-sm-fill text-sm-center nav-link <?php if ($tab == 2) echo "active"; ?>" onclick="reload(2)" id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">បង្កើតប្រភេទនៃអចលនទ្រព្យ</a>
 			</nav>
-			<div class="tab-content" id="orders-table-tab-content">
-				<div class="spinner-border visually-hidden" id="loading"role="status">
-
+			<div class="tab-content " id="orders-table-tab-content">
+				<div class="justify-content-center d-flex">
+					<div class="d-flex visually-hidden" id="loading" style="margin-top: 200px;margin-bottom: 200px;">
+						<div class="spinner-border me-2" role="status"></div>
+						Loading...
+					</div>
 				</div>
+				<?php
+				if (isset($_POST['btnDelete'])) {
+					$id = $_POST['txtPropertyId'];
+					deletePropertyType($id);
+				}
+				if (isset($_POST['btnUpdate'])) {
+					$id = $_POST['txtPropertyId'];
+					$txtKh = $_POST['txtPropertyTypeKh'];
+					$txtEn = $_POST['txtPropertyTypeEn'];
+					$txtDesc = $_REQUEST['txtDesc'];
+				
+					if ($id != '' && trim($txtKh) != '' && trim($txtEn) != '') {
+						$model = new PropertyTypeModel($id, $txtKh, $txtEn, $txtDesc);
+						updatePropertyType($id, $model);
+					}else{
+						alertMessage("notwork");
+					}
+				}
+				?>
 				<!-- table 1-->
 				<?php
 				include "components/view_property_type.php";
@@ -70,17 +92,22 @@ $imgDetail = '';
 		</div><!--//container-fluid-->
 	</div><!--//app-content-->
 	<?php include "includes/footer.php" ?>
-
 </div><!--//app-wrapper-->
+
 
 <script type="text/javascript">
 	function reload(tab) {
-		window.location.href = "index.php?page=property_type&tab=" + tab;
-		  
-		// _("view_property_type")
+		_("loading").classList.remove("visually-hidden");
+		if (tab == 2) {
+			_("viewPropertyType").classList.remove("show");
+			_("viewPropertyType").classList.remove("active");
+		} else {
+			_("addPropertyType").classList.remove("show");
+			_("addPropertyType").classList.remove("active");
+		}
+		setTimeout(function() {
+			window.location.href = "index.php?page=property_type&tab=" + tab;
+		}, 400);
 	}
-
-	function _(obj) {
-		return document.getElementById(obj);
-	}
+	const _ = (obj) => document.getElementById(obj);
 </script>
