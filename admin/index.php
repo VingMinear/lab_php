@@ -1,10 +1,12 @@
 <?php
 $page = "overview.php";
 $tab=1;
-if (isset($_GET['page'])&&isset($_GET['tab'])) {
+if (isset($_GET['page'])) {
 	$slider = false;
 	$routePage = $_GET['page'];
-	$tab=$_GET['tab'];
+	if(isset($_GET['tab'])){
+		$tab=$_GET['tab'];
+	}
 	switch ($routePage) {
 		case "docs":
 			$page = "docs.php";
@@ -14,6 +16,9 @@ if (isset($_GET['page'])&&isset($_GET['tab'])) {
 			break;
 		case "property_type":
 			$page = "property_type.php";
+			break;
+		case "create_property":
+			$page ="create_property.php";
 			break;
 		case "charts":
 			$page = "charts.php";
@@ -45,7 +50,6 @@ include "./controllers/property_type_controller.php";
 <html lang="en">
 
 <?php include "includes/head.php" ?>
-
 <body class="app">
 	<!--------------- NavBar -------------->
 	<?php

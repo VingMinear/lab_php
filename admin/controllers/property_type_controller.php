@@ -75,7 +75,7 @@ function modalDelete($num)
 	</div>
 	';
 }
-function modalViewDetail($num,PropertyTypeModel $model)
+function modalViewDetail($num, PropertyTypeModel $model)
 {
 	$txtKh = $model->getkh();
 	$txtEn = $model->getEn();
@@ -88,16 +88,32 @@ function modalViewDetail($num,PropertyTypeModel $model)
 			  <label for="setting-input-1" class="form-label d-flex justify-content-center text-success">មើលព័ត៌មានលម្អិត</label>
   		      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   		    </div>
-  		    <div class="modal-body px-3">
-				<div class="row d-flex">
-					- ឈ្មោះប្រភេទអចលនទ្រព្យជាខ្មែរ​ ៖ '.$txtKh.'
+  		    <div class="modal-body p-4">
+				<div class="row  d-flex">		
+					<div class="col-auto p-2 text-center text-success" >
+					ឈ្មោះប្រភេទអចលនទ្រព្យជាខ្មែរ​ ៖
+					</div>
+					<div  class="col-auto p-2 text-center" >
+					' . $txtKh . '
+					</div>
 				</div>
-				<div class="row d-flex mt-3">
-					- ឈ្មោះប្រភេទអចលនទ្រព្យជាខអង់គ្លេស ៖ '.$txtEn.'
+				<div class="row d-flex">		
+					<div class="col-auto p-2 text-start text-success">
+					ឈ្មោះប្រភេទអចលនទ្រព្យជាខអង់គ្លេស ៖
+					</div>
+					<div  class="col-auto p-2 text-start" >
+					' . $txtEn . '
+					</div>
 				</div>
-				<div class="row d-flex mt-3">
-					- បរិយាយ ៖ '.$txtDesc.'
+				<div class="row d-flex">		
+					<div class="col-auto p-2  text-start text-success" >
+					បរិយាយ ៖
+					</div>
+					<div  class="col-auto p-2  text-start" >
+					' . $txtDesc . '
+					</div>
 				</div>
+				
   		    </div>
   		    <div class="modal-footer">
 				<button type="button" class="btn border border-danger text-danger px-4" data-bs-dismiss="modal">Close</button>

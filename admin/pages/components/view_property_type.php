@@ -58,6 +58,9 @@
 
 		</div><!--//app-card-body-->
 	</div><!--//app-card-->
+<?php 
+if($tab==1){
+	echo '	
 	<nav class="app-pagination">
 		<ul class="pagination justify-content-center">
 			<li class="page-item disabled">
@@ -70,5 +73,7 @@
 				<a class="page-link" href="#">Next</a>
 			</li>
 		</ul>
-	</nav><!--//app-pagination-->
+	</nav>';
+}
+?>	
 </div><!--//tab-pane-->

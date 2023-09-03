@@ -49,15 +49,15 @@ $imgDetail = '';
 
 
 			<nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-				<a class="flex-sm-fill text-sm-center nav-link <?php if($tab==1)echo"active";?>"onclick="reload(1)" id="tab1" id="tab1" data-bs-toggle="tab" href="#view_property" role="tab" aria-controls="view_property" aria-selected="false">បញ្ចីប្រភេទអចលនទ្រព្យ</a>
-				<a class="flex-sm-fill text-sm-center nav-link <?php if($tab==2)echo"active";?>"onclick="reload(1)" id="tab1" id="tab2" data-bs-toggle="tab" href="#add_property" role="tab" aria-controls="add_property" aria-selected="false">បង្កើតអចលនទ្រព្យ</a>
+				<a class="flex-sm-fill text-sm-center nav-link <?php if($tab==1)echo"active";?>"onclick="reload(1)">បញ្ចីប្រភេទអចលនទ្រព្យ</a>
+			
 			</nav>
 			<div class="tab-content" id="orders-table-tab-content">
 				<!-- table 1-->
 				<?php include "components/view_property.php" ?>
 				<!-- end -->
 				<!-- table 2-->
-				<?php include "components/add_property.php" ?>
+			
 				<!-- end -->
 			</div>
 

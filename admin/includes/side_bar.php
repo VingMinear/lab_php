@@ -49,10 +49,11 @@
                             </svg>
                         </span><!--//submenu-arrow-->
                     </a><!--//nav-link-->
-                    <div id="submenu-1" class="<?php if(!($page=='property.php'||$page=='property_type.php'))echo'collapse'?> submenu submenu-1" data-bs-parent="#menu-accordion">
+                    <div id="submenu-1" class="<?php if(!($page=='property.php'||$page=='property_type.php' ||$page=='create_property.php'))echo'collapse'?> submenu submenu-1" data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
                             <li class="submenu-item"><a class="submenu-link <?php if($page=='property_type.php')echo'active';?>" href="index.php?page=property_type&tab=1">ប្រភេទនៃអចលនទ្រព្យ</a></li>
                             <li class="submenu-item"><a class="submenu-link <?php if($page=='property.php')echo'active';?>" href="index.php?page=property&tab=1">ព័ត៌មានអចលនទ្រព្យ</a></li>  
+                            <li class="submenu-item"><a class="submenu-link <?php if($page=='create_property.php')echo'active';?>" href="index.php?page=create_property">ព័ត៌មានអចលនទ្រព្យ</a></li>  
                         </ul>
                     </div>
                 </li><!--//nav-item-->
