@@ -1,14 +1,14 @@
 <div class="tab-pane fade <?php if ($tab == 2) echo "show active"; ?>" id="addPropertyType" role="tabpanel" aria-labelledby="orders-paid-tab">
-<?php
+    <?php
 
-if (isset($_POST['btnSubmit'])) {
-    $txtPropertyKh = $_POST['txtPropertyKh'];
-    $txtPropertyEn = $_POST['txtPropertyEn'];
-    $txtDesc = $_REQUEST['txtDesc'];
-    insertPropertyType($txtPropertyKh, $txtPropertyEn, $txtDesc);
-}
+    if (isset($_POST['btnSubmit'])) {
+        $txtPropertyKh = $_POST['txtPropertyKh'];
+        $txtPropertyEn = $_POST['txtPropertyEn'];
+        $txtDesc = $_REQUEST['txtDesc'];
+        insertPropertyType($txtPropertyKh, $txtPropertyEn, $txtDesc);
+    }
 
-?>
+    ?>
     <div class="col-12">
         <div class="app-card app-card-settings shadow-sm p-4">
             <div class="app-card-body">
@@ -20,6 +20,7 @@ if (isset($_POST['btnSubmit'])) {
                         <label for="setting-input-2" class="form-label text-danger">*</label>
                         <input type="text" class="form-control" name="txtPropertyKh" id="txtPropertyTypeKh" value="" required>
                     </div>
+                    
                     <div class="mb-3">
                         <label for="setting-input-3" class="form-label">ឈ្មោះប្រភេទអចលនទ្រព្យជាខអង់គ្លេស</label>
                         <label for="setting-input-2" class="form-label text-danger">*</label>

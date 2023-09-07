@@ -53,7 +53,7 @@
                         <ul class="submenu-list list-unstyled">
                             <li class="submenu-item"><a class="submenu-link <?php if($page=='property_type.php')echo'active';?>" href="index.php?page=property_type&tab=1">ប្រភេទនៃអចលនទ្រព្យ</a></li>
                             <li class="submenu-item"><a class="submenu-link <?php if($page=='property.php')echo'active';?>" href="index.php?page=property&tab=1">ព័ត៌មានអចលនទ្រព្យ</a></li>  
-                            <li class="submenu-item"><a class="submenu-link <?php if($page=='create_property.php')echo'active';?>" href="index.php?page=create_property">ព័ត៌មានអចលនទ្រព្យ</a></li>  
+                            <li class="submenu-item"><a class="submenu-link <?php if($page=='create_property.php')echo'active';?>" href="index.php?page=create_property">បង្កើតអចលនទ្រព្យ</a></li>  
                         </ul>
                     </div>
                 </li><!--//nav-item-->

@@ -9,7 +9,7 @@ if (isset($_GET['page'])) {
 	}
 	switch ($routePage) {
 		case "docs":
-			$page = "docs.php";
+			$page = "upload.php";
 			break;
 		case "property":
 			$page = "property.php";
