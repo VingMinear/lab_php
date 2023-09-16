@@ -8,4 +8,31 @@
 
  <!-- Page Specific JS -->
  <script src="assets/js/app.js"></script>
- <script src="assets/js/jquery.js"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9">
+ </script>
+ <script>
+     function sendData() {
+         alert("send");
+         // Capture user input
+         var inputData = document.getElementById("inputData").value;
+
+         // Create a new XMLHttpRequest object
+         var xhr = new XMLHttpRequest();
+
+         // Configure the request
+         xhr.open("POST", "process.php", true);
+         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+         // Define the callback function to handle the response
+         xhr.onreadystatechange = function() {
+             if (xhr.readyState == 4 && xhr.status == 200) {
+                 // Parse and display the response
+                 document.getElementById("result").innerHTML = xhr.responseText;
+             }
+         };
+
+         // Send the request with user input as data
+         xhr.send("data=" + inputData);
+     }
+ </script>

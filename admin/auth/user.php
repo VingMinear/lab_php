@@ -1,3 +1,3 @@
 <?php 
-    $profile='./assets/images/users/user-1.jpg';;
+    $profile='./assets/images/users/me.png';
 ?>

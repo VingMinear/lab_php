@@ -18,20 +18,34 @@ function alertMsgStyle($msg, $type)
             break;
         case 'error':
             echo '
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>' . $msg . '</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             ';
             break;
     }
+    removeAlert();
 }
-
-function javaScript($statement){
+function removeAlert()
+{
+    $statement = '
+    setTimeout(function() {
+        document.getElementById("alert").remove();
+    }, 2500);
+    ';
+    javaScript($statement);
+}
+function javaScript($statement)
+{
     echo "<script type='text/javascript'>
     $statement
     </script>";
 }
-
-
-?>
+function reload($route)
+{
+    echo '<script type="text/javascript"> 
+    
+    window.location.href =' . $route . ';
+          </script>';
+}

@@ -21,13 +21,13 @@
 							$i = 1;
 							while ($row = mysqli_fetch_array($result)) {
 								$num = $i;
-								$propertyId = $row[0];
+								$propertyTypeId = $row[0];
 								$propertyNameKH = $row[1];
 								$propertyNameEN = $row[2];
 								$desc = $row['property_type_desc'];
-								$model = new PropertyTypeModel($propertyId, $propertyNameKH, $propertyNameEN, $desc);
+								$model = new PropertyTypeModel($propertyTypeId, $propertyNameKH, $propertyNameEN, $desc);
 							?>
-								<input type="hidden" name="txtPropertyId" value="<?=$propertyId?>">
+								<input type="hidden" name="txtPropertyTypeId" value="<?=$propertyTypeId?>">
 								<tr>
 									<td class="cell text-center"><span class="truncate"><?= $num ?></span></td>
 									<td class="cell text-center"><span class="truncate"><?= $propertyNameKH ?></span></td>

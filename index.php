@@ -1,4 +1,5 @@
 <?php
+session_start();
 $page = "maincontents.php";
 $showSlider = true;
 if (isset($_GET['page'])) {

@@ -5,6 +5,7 @@ $imgDetail = '';
 <div class="app-wrapper" method="POST">
 	<div class="app-content pt-3 p-md-3 p-lg-4">
 		<div class="container-xl">
+
 			<div class="row g-3 mb-4 align-items-center justify-content-between">
 				<div class="col-auto">
 					<h1 class="app-page-title mb-0">ព័ត៌មានអចលនទ្រព្យ</h1>
@@ -49,15 +50,16 @@ $imgDetail = '';
 
 
 			<nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-				<a class="flex-sm-fill text-sm-center nav-link <?php if($tab==1)echo"active";?>"onclick="reload(1)">បញ្ចីប្រភេទអចលនទ្រព្យ</a>
-			
+				<a class="flex-sm-fill text-sm-center nav-link <?php if ($tab == 1) echo "active"; ?>" onclick="reload(1)">បញ្ចីអចលនទ្រព្យ</a>
+
 			</nav>
 			<div class="tab-content" id="orders-table-tab-content">
+				<?php include "./controllers/create_property_controller.php"; ?>
 				<!-- table 1-->
 				<?php include "components/view_property.php" ?>
 				<!-- end -->
 				<!-- table 2-->
-			
+
 				<!-- end -->
 			</div>
 
@@ -83,7 +85,7 @@ $imgDetail = '';
 
 <script>
 	function getImage(image, name) {
-		var image = "<img src='./assets/images/property/" + image + ".jpg'class='img-fluid rounded shadow-2-strong border' style=''>"
+		var image = "<img src='./assets/images/property/" + image + "'class='img-fluid rounded shadow-2-strong border' style=''>"
 		_('modalBody').innerHTML = image;
 		_('modalLabel').innerHTML = name;
 	}

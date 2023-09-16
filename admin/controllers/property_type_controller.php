@@ -1,6 +1,6 @@
 <?php
 include "./utils/utilty.php";
-
+include "./models/property_type_model.php";
 function modalUpdate($id, PropertyTypeModel $model)
 {
 
@@ -123,7 +123,7 @@ function modalViewDetail($num, PropertyTypeModel $model)
 	';
 }
 
-include "./models/property_type_model.php";
+
 
 
 if (isset($_POST['reset'])) {
@@ -143,13 +143,6 @@ function updatePropertyType($id, PropertyTypeModel $model)
 			');
 	if ($isSuccess) {
 		alertMsgStyle("អ្នកបានកែប្រែទិន្នន័យដោយទទួលបានជោគជ័យ", "success");
-		$statement = '
-				setTimeout(function() {
-					document.getElementById("alert").remove();
-					window.location.href = "index.php?page=property_type&tab=1";
-				}, 2500);
-				';
-		javaScript($statement);
 	}
 }
 function insertPropertyType($propertyKh, $propertyEn, $desc)
@@ -158,12 +151,6 @@ function insertPropertyType($propertyKh, $propertyEn, $desc)
 		VALUES ('$propertyKh','$propertyEn' ,'$desc' );");
 	if ($isSuccess) {
 		alertMsgStyle("អ្នកបានបញ្ចូលទិន្នន័យដោយជោគជ័យ", "success");
-		$statement = '
-		setTimeout(function() {
-			document.getElementById("alert").remove();
-		}, 2500);
-		';
-		javaScript($statement);
 	}
 }
 
@@ -174,12 +161,5 @@ function deletePropertyType($id)
 							');
 	if ($isSuccess) {
 		alertMsgStyle("អ្នកបានលុបទិន្នន័យដោយជោគជ័យ", "success");
-		$statement = '
-					setTimeout(function() {
-							document.getElementById("alert").remove();
-							window.location.href = "index.php?page=property_type&tab=1";
-					}, 2500);
-					';
-		javaScript($statement);
 	}
 }

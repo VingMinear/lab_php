@@ -61,11 +61,11 @@ $imgDetail = '';
 				</div>
 				<?php
 				if (isset($_POST['btnDelete'])) {
-					$id = $_POST['txtPropertyId'];
+					$id = $_POST['txtPropertyTypeId'];
 					deletePropertyType($id);
 				}
 				if (isset($_POST['btnUpdate'])) {
-					$id = $_POST['txtPropertyId'];
+					$id = $_POST['txtPropertyTypeId'];
 					$txtKh = $_POST['txtPropertyTypeKh'];
 					$txtEn = $_POST['txtPropertyTypeEn'];
 					$txtDesc = $_REQUEST['txtDesc'];
