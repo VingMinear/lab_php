@@ -47,7 +47,7 @@ function reload($route)
     echo '
     <script type="text/javascript"> 
         function myFunction() {
-            window.location.replace("'.$route.'");
+            window.location.replace("index?page='.$route.'");
         }
         setTimeout(myFunction, 2500);
     </script>';

@@ -65,13 +65,72 @@ if (isset($_POST['btnSubmit'])) {
         } else {
             alertMsgStyle($errors[0], 'error');
         }
-        reload("index.php?page=create_property");
+        reload("create_property");
+    }
+}
+if (isset($_POST['btnUpdate'])) {
+    $id=$_GET['id'];
+    $proTypeId = $_POST['sel_pro_type'];
+    $proStatusId = $_POST['sel_pro_status'];
+    $proTitle = $_POST['txt_title'];
+    $proPrice = intval(str_replace(['.', ','], '', $_POST['txt_price']));
+    $proDesc = $_POST['txtDesc'] ?? '""';
+    if ($proTypeId == '') {
+        $msg1 = $msgSelType;
+    } else {
+        $msg1 = '';
+    }
+    if ($proStatusId == '') {
+        $msg2 = $msgSelStatus;
+    } else {
+        $msg2 = '';
+    }
+    if ($proTitle == '') {
+        $msg3 = $msgTitle;
+    } else {
+        $msg3 = '';
+    }
+    if ($proPrice == '') {
+        $msg4 = $msgPrice;
+    } else {
+        $msg4 = '';
+    }
+    $errors = array();
+    $fileName = $_FILES['fileUpl']['name'];
+    $fileSize = $_FILES['fileUpl']['size'];
+    $fileTmp  = $_FILES['fileUpl']['tmp_name'];
+    $fileType = $_FILES['fileUpl']['type'];
+    if ($fileName == '' && $proTitle == '') {
+        $msg5 = $msgFile;
+    } else {
+        $msg5 = '';
+        $fileName_bstr = explode('.', $fileName);
+        $fileExt = strtolower(end($fileName_bstr));
+        $newFileName = md5(time()) . $proTitle . '.' . $fileExt;
+        $ext = array("jpeg", "png", "jpg", "svg", "webp", "jfif", "pjpeg", "gif");
+        if (in_array($fileExt, $ext) == false) {
+            $errors[] = 'Wrong file extension';
+        }
+        if ($fileSize > 2097151) {
+            $errors[] = 'File size must be excactly 2MB';
+        }
+
+        if (empty($errors) == true) {
+            if ($proTypeId != '' && $proStatusId != '' && $proTitle != '' && $proPrice != '') {
+                $model = new PropertyModel($proTitle, $proPrice, $newFileName, $proDesc, $proStatusId, $proTypeId);
+                if ($fileName == '') {
+                    updateProperty($id,$model);
+                }
+            }
+        } else {
+            alertMsgStyle($errors[0], 'error');
+        }
     }
 }
 if (isset($_GET['btnDeletePro'])) {
     $proId = $_GET['pId'];
     deleteProperty($proId);
-    reload('index.php?page=property&tab=1');
+    reload('property&tab=1');
 }
 
 function getProperty($id)
@@ -99,6 +158,19 @@ function deleteProperty($id)
 							');
     if ($isSuccess) {
         alertMsgStyle("អ្នកបានលុបទិន្នន័យដោយជោគជ័យ", "success");
+    }
+}
+function updateProperty($id,PropertyModel $model)
+{
+    $isSuccess = queryData('UPDATE tbl_property SET
+    property_name  = "' . $model->name . '",
+    property_price ="' . $model->price . '",
+    property_desc = "' . $model->desc . '"
+    property_type_id = "' . $model->typeId . '"
+    property_status_id = "' . $model->statusId. '"
+    WHERE property_id =' . $id . ';');
+    if ($isSuccess) {
+        alertMsgStyle("អ្នកបានកែប្រែទិន្នន័យដោយជោគជ័យ", "success");
     }
 }
 function modalViewDetailProperty($num, PropertyModel $model)

@@ -1,9 +1,8 @@
 <?php
-include "./utils/utilty.php";
 include "./models/property_type_model.php";
 function modalUpdate($id, PropertyTypeModel $model)
 {
-
+	$txtId=$model->getId();
 	$txtKh = $model->getkh();
 	$txtEn = $model->getEn();
 	$txtDesc = $model->getDesc();
@@ -19,7 +18,7 @@ function modalUpdate($id, PropertyTypeModel $model)
       			<div class="modal-body">
     				<div class="app-card-body">
                 	<form method="post" class="settings-form">
-						<input type="hidden" name="txtPropertyTypeId" value"' . $model->getId() . '" >
+						<input type="hidden" name="txtPropertyTypeId" value="' . $txtId . '" >
                 	    <div class="mb-3">
                 	        <label for="setting-input-2" class="form-label">ឈ្មោះប្រភេទអចលនទ្រព្យជាខ្មែរ</label>
                 	        <label for="setting-input-2" class="form-label text-danger">*</label>
@@ -123,6 +122,18 @@ function modalViewDetail($num, PropertyTypeModel $model)
 	';
 }
 
+if (isset($_POST['btnUpdate'])) {
+	$id = $_POST['txtPropertyTypeId'];
+	$txtKh = $_POST['txtPropertyTypeKh'];
+	$txtEn = $_POST['txtPropertyTypeEn'];
+	$txtDesc = $_REQUEST['txtDesc'];
+	if ($id != '' && trim($txtKh) != '' && trim($txtEn) != '') {
+		$model = new PropertyTypeModel($id, $txtKh, $txtEn, $txtDesc);
+		updatePropertyType($id, $model);
+	} else {
+		alertMessage("not work");
+	}
+}
 
 if (isset($_GET['btnDelete'])) {
 	$id = $_GET['txtPropertyTypeId'];
@@ -147,6 +158,7 @@ function updatePropertyType($id, PropertyTypeModel $model)
 	if ($isSuccess) {
 		alertMsgStyle("អ្នកបានកែប្រែទិន្នន័យដោយទទួលបានជោគជ័យ", "success");
 	}
+	reload('property_type');
 }
 function insertPropertyType($propertyKh, $propertyEn, $desc)
 {
@@ -155,6 +167,7 @@ function insertPropertyType($propertyKh, $propertyEn, $desc)
 	if ($isSuccess) {
 		alertMsgStyle("អ្នកបានបញ្ចូលទិន្នន័យដោយជោគជ័យ", "success");
 	}
+	
 }
 
 function deletePropertyType($id)
@@ -165,4 +178,5 @@ function deletePropertyType($id)
 	if ($isSuccess) {
 		alertMsgStyle("អ្នកបានលុបទិន្នន័យដោយជោគជ័យ", "success");
 	}
+	reload('property_type');
 }

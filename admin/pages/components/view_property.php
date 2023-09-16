@@ -65,7 +65,7 @@
 									<td class="cell text-center">
 										<a href="#" class="btn btn-outline-primary btn-rounded waves-effect p-1 px-3" data-bs-toggle="modal" data-bs-target="#view_detail<?= $num ?>"><i class="fa-solid fa-eye"></i></a>
 										<a href="index.php?page=upd_property&id=<?= $propertyId ?>" class="btn btn-outline-success btn-rounded waves-effect p-1 px-3" title="Edit"><i class="fa-regular fa-pen-to-square"></i></a>
-										<button type="submit" name="btnDeletePro" class="btn btn-outline-danger btn-rounded waves-effect p-1 px-3"><i class="fa-solid fa-trash"></i></button>
+										<button type="submit" name="btnDeletePro" onclick="return confirm('តើអ្នកប្រាកដទេថាអ្នកចង់លុបអចលនទ្រព្យនេះ?');"class="btn btn-outline-danger btn-rounded waves-effect p-1 px-3"><i class="fa-solid fa-trash"></i></button>
 									</td>
 									<?= modalViewDetailProperty($num, $model); ?>
 

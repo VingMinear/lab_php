@@ -5,7 +5,6 @@
       }
   </style>
   <div class="app-wrapper">
-      </form>
       <div class="app-content pt-3 p-md-3 p-lg-4">
           <div class="container-xl">
               <?php
@@ -109,7 +108,7 @@
 
                           <div class="d-flex justify-content-end">
                               <button type="reset" class="btn border border-danger text-danger px-4">សម្អាត</button>
-                              <button type="submit" id="submit" name="btnUpdate" class="ms-2 btn app-btn-primary px-4">បង្កើត</button>
+                              <button type="submit" id="submit" name="btnUpdate" class="ms-2 btn app-btn-primary px-4">កែប្រែ</button>
                           </div>
 
                       </form>

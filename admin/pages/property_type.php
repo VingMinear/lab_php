@@ -6,7 +6,7 @@ $imgDetail = '';
 <div class="app-wrapper" method="POST">
 	<div class="app-content pt-3 p-md-3 p-lg-4">
 		<div class="container-xl">
-			<?php include "./controllers/property_type_controller.php";?>
+		
 			<div class="row g-3 mb-4 align-items-center justify-content-between">
 				<div class="col-auto">
 					<h1 class="app-page-title mb-0">ប្រភេទនៃអចលនទ្រព្យ</h1>
@@ -54,28 +54,14 @@ $imgDetail = '';
 				<a class="flex-sm-fill text-sm-center nav-link <?php if ($tab == 2) echo "active"; ?>" onclick="reload(2)" id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">បង្កើតប្រភេទនៃអចលនទ្រព្យ</a>
 			</nav>
 			<div class="tab-content " id="orders-table-tab-content">
+			<?php include "./controllers/property_type_controller.php";?>
 				<div class="justify-content-center d-flex">
 					<div class="d-flex visually-hidden" id="loading" style="margin-top: 200px;margin-bottom: 200px;">
 						<div class="spinner-border me-2" role="status"></div>
 						Loading...
 					</div>
 				</div>
-				<?php
 			
-				if (isset($_POST['btnUpdate'])) {
-					$id = $_POST['txtPropertyTypeId'];
-					$txtKh = $_POST['txtPropertyTypeKh'];
-					$txtEn = $_POST['txtPropertyTypeEn'];
-					$txtDesc = $_REQUEST['txtDesc'];
-				
-					if ($id != '' && trim($txtKh) != '' && trim($txtEn) != '') {
-						$model = new PropertyTypeModel($id, $txtKh, $txtEn, $txtDesc);
-						updatePropertyType($id, $model);
-					}else{
-						alertMessage("notwork");
-					}
-				}
-				?>
 				<!-- table 1-->
 				<?php
 				include "components/view_property_type.php";
