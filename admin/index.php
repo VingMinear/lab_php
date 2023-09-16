@@ -1,11 +1,12 @@
 <?php
+session_start();
 $page = "overview.php";
-$tab=1;
+$tab = 1;
 if (isset($_GET['page'])) {
 	$slider = false;
 	$routePage = $_GET['page'];
-	if(isset($_GET['tab'])){
-		$tab=$_GET['tab'];
+	if (isset($_GET['tab'])) {
+		$tab = $_GET['tab'];
 	}
 	switch ($routePage) {
 		case "docs":
@@ -18,7 +19,10 @@ if (isset($_GET['page'])) {
 			$page = "property_type.php";
 			break;
 		case "create_property":
-			$page ="create_property.php";
+			$page = "create_property.php";
+			break;
+		case "upd_property":
+			$page = "update_property.php";
 			break;
 		case "charts":
 			$page = "charts.php";
@@ -43,13 +47,16 @@ include "../config/db.php";
 include "./controllers/query.php";
 include "./controllers/property_type_controller.php";
 
-
+header("Access-Control-Allow-Origin: *"); // Replace * with the specific origin you want to allow
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <?php include "includes/head.php" ?>
+
 <body class="app">
 	<!--------------- NavBar -------------->
 	<?php

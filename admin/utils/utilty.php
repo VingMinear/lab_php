@@ -44,8 +44,11 @@ function javaScript($statement)
 }
 function reload($route)
 {
-    echo '<script type="text/javascript"> 
-    
-    window.location.href =' . $route . ';
-          </script>';
+    echo '
+    <script type="text/javascript"> 
+        function myFunction() {
+            window.location.replace("'.$route.'");
+        }
+        setTimeout(myFunction, 2500);
+    </script>';
 }

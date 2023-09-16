@@ -19,7 +19,7 @@ function modalUpdate($id, PropertyTypeModel $model)
       			<div class="modal-body">
     				<div class="app-card-body">
                 	<form method="post" class="settings-form">
-						<input type="hidden" name="txtPropertyId" value"' . $model->getId() . '" >
+						<input type="hidden" name="txtPropertyTypeId" value"' . $model->getId() . '" >
                 	    <div class="mb-3">
                 	        <label for="setting-input-2" class="form-label">ឈ្មោះប្រភេទអចលនទ្រព្យជាខ្មែរ</label>
                 	        <label for="setting-input-2" class="form-label text-danger">*</label>
@@ -128,7 +128,7 @@ function modalViewDetail($num, PropertyTypeModel $model)
 
 if (isset($_POST['reset'])) {
 	javaScript('
-        document.getElementsByName("txtPropertyId").defaultValue="clear";
+        document.getElementsByName("txtPropertyTypeId").defaultValue="clear";
       
     ');
 }

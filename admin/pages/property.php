@@ -54,7 +54,7 @@ $imgDetail = '';
 
 			</nav>
 			<div class="tab-content" id="orders-table-tab-content">
-				<?php include "./controllers/create_property_controller.php"; ?>
+				<?php include "./controllers/property_controller.php"; ?>
 				<!-- table 1-->
 				<?php include "components/view_property.php" ?>
 				<!-- end -->

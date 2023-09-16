@@ -1,5 +1,6 @@
 <?php
-include "./models/property_model.php";
+include("./models/property_model.php");
+
 
 
 $msgTitle = '<div class="text-danger mt-2 msg" >សូមបញ្ចូលឈ្មោះអចលនទ្រព្យ *</div>';
@@ -8,16 +9,13 @@ $msgSelType = '<div class="text-danger mt-2 msg">សូមជ្រើសរើ�
 $msgSelStatus = '<div class="text-danger mt-2 msg">សូមជ្រើសរើសសន្ថានភាព *</div>';
 $msgFile = '<div class="text-danger mt-2 msg">សូមបញ្ចូលរូបភាព *</div>';
 $msg1 = $msg2 = $msg3 = $msg4 = $msg5 = '';
-if (isset($_POST['btnDeletePro'])) {
-    $id = $_POST['txtPropertyId'];
-    deleteProperty($id);
-}
+
 if (isset($_POST['btnSubmit'])) {
     $proTypeId = $_POST['sel_pro_type'];
     $proStatusId = $_POST['sel_pro_status'];
     $proTitle = $_POST['txt_title'];
-    $proPrice = intval(str_replace(['.', ','],'',$_POST['txt_price']));
-    $proDesc = $_POST['txtDesc']??'""';
+    $proPrice = intval(str_replace(['.', ','], '', $_POST['txt_price']));
+    $proDesc = $_POST['txtDesc'] ?? '""';
     if ($proTypeId == '') {
         $msg1 = $msgSelType;
     } else {
@@ -49,7 +47,7 @@ if (isset($_POST['btnSubmit'])) {
         $msg5 = '';
         $fileName_bstr = explode('.', $fileName);
         $fileExt = strtolower(end($fileName_bstr));
-        $newFileName = $proTitle . '.' . $fileExt;
+        $newFileName = md5(time()) . $proTitle . '.' . $fileExt;
         $ext = array("jpeg", "png", "jpg", "svg", "webp", "jfif", "pjpeg", "gif");
         if (in_array($fileExt, $ext) == false) {
             $errors[] = 'Wrong file extension';
@@ -67,8 +65,22 @@ if (isset($_POST['btnSubmit'])) {
         } else {
             alertMsgStyle($errors[0], 'error');
         }
-        reload("index.php");
+        reload("index.php?page=create_property");
     }
+}
+if (isset($_GET['btnDeletePro'])) {
+    $proId = $_GET['pId'];
+    deleteProperty($proId);
+    reload('index.php?page=property&tab=1');
+}
+
+function getProperty($id)
+{
+    //
+    $result = queryData('SELECT * from tbl_property WHERE property_id =' . $id . ';');
+    $row = mysqli_fetch_array($result);
+    $data = new PropertyModel($row['1'], $row['2'], $row['3'], $row['4'], $row['6'], $row['5']);
+    return $data;
 }
 function insertProperty(PropertyModel $model)
 {
@@ -82,22 +94,22 @@ function insertProperty(PropertyModel $model)
 }
 function deleteProperty($id)
 {
-	$isSuccess = queryData('DELETE FROM tbl_property
+    $isSuccess = queryData('DELETE FROM tbl_property
 							WHERE property_id = ' . $id . ';
 							');
-	if ($isSuccess) {
-		alertMsgStyle("អ្នកបានលុបទិន្នន័យដោយជោគជ័យ", "success");
-	}
+    if ($isSuccess) {
+        alertMsgStyle("អ្នកបានលុបទិន្នន័យដោយជោគជ័យ", "success");
+    }
 }
 function modalViewDetailProperty($num, PropertyModel $model)
 {
-	$name = $model->name;
-	$price = $model->price;
+    $name = $model->name;
+    $price = $model->price;
     $img = $model->image;
-	$status = $model->statusId;
+    $status = $model->statusId;
     $type = $model->typeId;
-	$desc = $model->desc;
-	echo '
+    $desc = $model->desc;
+    echo '
 	<div class="modal fade" id="view_detail' . $num . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   		<div class="modal-dialog modal-dialog-centered">
   		  <div class="modal-content">
@@ -143,7 +155,7 @@ function modalViewDetailProperty($num, PropertyModel $model)
 					រូបភាព ៖
 					</div>
 					<div  class="col-auto p-2 text-start" >
-                    <img src="./assets/images/property/'.$img.'" class="img-fluid rounded shadow-2-strong border" style="width: 45px; height: 45px">
+                    <img src="./assets/images/property/' . $img . '" class="img-fluid rounded shadow-2-strong border" style="width: 45px; height: 45px">
 					</div>
 				</div>
 				<div class="row d-flex">		

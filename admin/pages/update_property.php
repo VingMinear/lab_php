@@ -8,14 +8,20 @@
       </form>
       <div class="app-content pt-3 p-md-3 p-lg-4">
           <div class="container-xl">
-              <?php include "./controllers/property_controller.php"; ?>
+              <?php
+                include "./controllers/property_controller.php";
+                if (isset($_GET['id'])) {
+                    $data = getProperty($_GET['id']);
+                }
+                ?>
+
               <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-                  <a class="flex-sm-fill text-sm-center nav-link active">បង្កើតអចលនទ្រព្យ</a>
+                  <a class="flex-sm-fill text-sm-center nav-link active">កែប្រែអចលនទ្រព្យ</a>
               </nav>
               <div class="app-card app-card-settings shadow-sm p-4">
                   <div class="app-card-body">
                       <form class="settings-form" method="post" enctype="multipart/form-data">
-                          <label for="setting-input-1" class="form-label d-flex justify-content-center text-success">បំពេញព័ត៌មាននៃអចលនទ្រព្យ</label>
+                          <label for="setting-input-1" class="form-label d-flex justify-content-center text-success">កែប្រែទិន្ន័យអចលនទ្រព្យ</label>
                           <hr />
                           <div class="row ">
                               <div class="mb-3 col ">
@@ -26,12 +32,18 @@
                                           <option value="">- ជ្រើសរើសប្រភេទ -</option>
                                           <?php
                                             $sql = "SELECT * FROM tbl_property_type";
+                                            $selectedType = '';
                                             $result = queryData($sql);
                                             while ($row = mysqli_fetch_array($result)) {
-                                                $id = $row['property_type_id'];
+                                                $idProType = $row['property_type_id'];
                                                 $title = $row['property_type_kh'];
+                                                if ($idProType == $data->typeId) {
+                                                    $selectedType = 'selected';
+                                                } else {
+                                                    $selectedType = '';
+                                                }
                                             ?>
-                                              <option value="<?= $id ?>"><?= $title ?></option>
+                                              <option value="<?= $idProType ?>" <?= $selectedType ?>><?= $title ?></option>
                                           <?php } ?>
                                       </select>
                                   </div>
@@ -45,12 +57,18 @@
                                           <option value="">- ជ្រើសរើសសន្ថានភាព -</option>
                                           <?php
                                             $sql = "SELECT * FROM tbl_property_status";
+                                            $selectedStatus = '';
                                             $result = queryData($sql);
                                             while ($row = mysqli_fetch_array($result)) {
                                                 $id = $row['property_status_id'];
                                                 $title = $row['property_status'];
+                                                if ($id == $data->statusId) {
+                                                    $selectedStatus = 'selected';
+                                                } else {
+                                                    $selectedStatus = '';
+                                                }
                                             ?>
-                                              <option value="<?= $id ?>"><?= $title ?></option>
+                                              <option value="<?= $id ?>" <?= $selectedStatus ?>><?= $title ?></option>
                                           <?php } ?>
                                       </select>
                                   </div>
@@ -61,7 +79,7 @@
                           <div class="mb-3">
                               <label for="setting-input-2" class="form-label">ឈ្មោះប្រភេទអចលនទ្រព្យជាខ្មែរ</label>
                               <label for="setting-input-2" class="form-label text-danger">*</label>
-                              <input type="text" class="form-control" name="txt_title" value="">
+                              <input type="text" class="form-control" name="txt_title" value="<?= $data->name ?>">
                               <?= $msg3 ?>
                           </div>
 
@@ -69,7 +87,7 @@
                               <div class="col-5 ">
                                   <div class="mb-3"><label for="setting-input-3" class="form-label">តម្លៃអចលនទ្រព្យ</label>
                                       <label for="setting-input-2" class="form-label text-danger">*</label>
-                                      <input type="text" class="form-control" name="txt_price" value="">
+                                      <input type="text" class="form-control" name="txt_price" value="<?= $data->price ?>">
                                       <?= $msg4 ?>
                                   </div>
                               </div>
@@ -80,18 +98,18 @@
                                           <input class="form-control p-1 ps-1 " name="fileUpl" style="font-size:18px" type="file" id="fileUpl">
                                           <?= $msg5 ?>
                                       </div>
-                                      <div class="col-auto "><img class="img-thumbnail img-fluid shadow" id='img' accept="image/*" style="height:120px; width:120px;" src="./assets/empty.jpg" /></div>
+                                      <div class="col-auto "><img class="img-thumbnail img-fluid shadow" id='img' accept="image/*" style="height:120px;" src="./assets/images/property/<?= $data->image ?>" /></div>
                                   </div>
                               </div>
                           </div>
                           <div class="mb-3">
                               <label for="setting-input-3" class="form-label">បរិយាយ</label>
-                              <textarea type="text" class="form-control" name="txtDesc" value="" style="height: auto;"></textarea>
+                              <textarea type="text" class="form-control" name="txtDesc" value="" style="height: auto;"> <?= $data->desc ?></textarea>
                           </div>
 
                           <div class="d-flex justify-content-end">
                               <button type="reset" class="btn border border-danger text-danger px-4">សម្អាត</button>
-                              <button type="submit" id="submit" name="btnSubmit" class="ms-2 btn app-btn-primary px-4">បង្កើត</button>
+                              <button type="submit" id="submit" name="btnUpdate" class="ms-2 btn app-btn-primary px-4">បង្កើត</button>
                           </div>
 
                       </form>
