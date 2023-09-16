@@ -6,6 +6,7 @@ $imgDetail = '';
 <div class="app-wrapper" method="POST">
 	<div class="app-content pt-3 p-md-3 p-lg-4">
 		<div class="container-xl">
+			<?php include "./controllers/property_type_controller.php";?>
 			<div class="row g-3 mb-4 align-items-center justify-content-between">
 				<div class="col-auto">
 					<h1 class="app-page-title mb-0">ប្រភេទនៃអចលនទ្រព្យ</h1>
@@ -60,10 +61,7 @@ $imgDetail = '';
 					</div>
 				</div>
 				<?php
-				if (isset($_POST['btnDelete'])) {
-					$id = $_POST['txtPropertyTypeId'];
-					deletePropertyType($id);
-				}
+			
 				if (isset($_POST['btnUpdate'])) {
 					$id = $_POST['txtPropertyTypeId'];
 					$txtKh = $_POST['txtPropertyTypeKh'];

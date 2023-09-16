@@ -45,7 +45,7 @@ if (isset($_GET['page'])) {
 <?php
 include "../config/db.php";
 include "./controllers/query.php";
-include "./controllers/property_type_controller.php";
+
 
 header("Access-Control-Allow-Origin: *"); // Replace * with the specific origin you want to allow
 header("Access-Control-Allow-Methods: POST");

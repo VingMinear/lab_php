@@ -124,7 +124,10 @@ function modalViewDetail($num, PropertyTypeModel $model)
 }
 
 
-
+if (isset($_GET['btnDelete'])) {
+	$id = $_GET['txtPropertyTypeId'];
+	deletePropertyType($id);
+}
 
 if (isset($_POST['reset'])) {
 	javaScript('

@@ -2,7 +2,6 @@
 	<div class="app-card app-card-orders-table shadow-sm mb-5">
 		<div class="app-card-body">
 			<div class="table-responsive">
-				<form method="post" action="<?php $_SERVER['REQUEST_METHOD'] ?>">
 					<table class="table app-table-hover mb-0 text-left">
 						<thead>
 							<tr>
@@ -27,6 +26,8 @@
 								$desc = $row['property_type_desc'];
 								$model = new PropertyTypeModel($propertyTypeId, $propertyNameKH, $propertyNameEN, $desc);
 							?>
+							<form method="get" action="<?php $_SERVER['REQUEST_METHOD'] ?>">
+								<input type="hidden" name="page" value="property_type">
 								<input type="hidden" name="txtPropertyTypeId" value="<?=$propertyTypeId?>">
 								<tr>
 									<td class="cell text-center"><span class="truncate"><?= $num ?></span></td>
@@ -40,6 +41,7 @@
 									</td>
 									<?= modalViewDetail($num,$model);?>
 								</tr>
+							</form>
 							<?php
 								
 								modalUpdate($num, $model);
@@ -49,7 +51,7 @@
 							?>
 						</tbody>
 					</table>
-				</form>
+			
 
 
 
